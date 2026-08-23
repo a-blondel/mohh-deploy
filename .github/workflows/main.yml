@@ -25,6 +25,7 @@ jobs:
       env:
         QA_TESTERS_WHITELIST: ${{ secrets.QA_TESTERS_WHITELIST }}
         REBROADCASTER_API_KEY: ${{ secrets.REBROADCASTER_API_KEY }}
+        MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
       run: |
         echo ENVIRONMENT=${{ secrets.ENVIRONMENT }} >> .env
         echo DB_USERNAME=${{ secrets.DB_USERNAME }} >> .env
@@ -41,7 +42,7 @@ jobs:
         echo MAIL_HOST=${{ secrets.MAIL_HOST }} >> .env
         echo MAIL_PORT=${{ secrets.MAIL_PORT }} >> .env
         echo MAIL_USERNAME=${{ secrets.MAIL_USERNAME }} >> .env
-        echo MAIL_PASSWORD=${{ secrets.MAIL_PASSWORD }} >> .env
+        printf "MAIL_PASSWORD='%s'\n" "$MAIL_PASSWORD" >> .env
         echo DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }} >> .env
         echo DISCORD_WEBHOOK_REPORTS=${{ secrets.DISCORD_WEBHOOK_REPORTS }} >> .env
         echo DISCORD_WEBHOOK_MONITORING=${{ secrets.DISCORD_WEBHOOK_MONITORING }} >> .env
